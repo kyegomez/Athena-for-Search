@@ -76,3 +76,27 @@ To run Athena for Search locally, follow these steps:
 5. **AI-Assisted Content Creation:** Introduce an AI-assisted content creation tool that helps users generate articles, reports, presentations, and more using Athena's data and insights.
 
 The future of search is here. Athena for Search aims to make every piece of information on the internet easily accessible, allowing you to explore and discover with unprecedented ease and precision. Join us on this journey to redefine the way we interact with the digital world.
+
+
+# Contribute to Athena for Search
+
+We are on a mission to build the world's first truly native multi-modality, next-generation search engine. We believe in the power of collective intelligence and the magic that happens when diverse minds come together. We invite developers, researchers, designers, and thinkers from all around the world to join us in shaping the future of search.
+
+## Creation Credits
+
+To honor and incentivize the contributions of our global community, we've implemented a unique reward system called "Creation Credits". For every meaningful contribution you make, you will earn Creation Credits, a tangible recognition of the value you've added to Athena. As we develop and add premium features, these credits can be redeemed for access to premium functionalities or exchanged for monetary rewards.
+
+Your ideas and efforts are essential to us. Whether you're improving an algorithm, optimizing UI/UX, or crafting an innovative feature, your contributions will not go unnoticed or unrewarded. Together, we can create something truly remarkable.
+
+## Hiring
+
+APAC AI is also expanding its internal team. We are looking for individuals who are passionate about advancing humanity through the development of next-generation Human-Computer Interfaces.
+
+We have various open positions across development, design, product management, and AI research. If you're ready to push boundaries, challenge status quo, and create what's next, we would love to hear from you. 
+
+Let's redefine how humans interact with the digital world. Let's empower individuals and organizations with unparalleled access to information. Join us, contribute, create, and let's shape the future of search together!
+
+# Creators United
+Join Agora and gather with your fellow Creators! We're devoted to advancing our bodies, minds, and spirits through creating new things that help people or animals!
+
+[Agora link](https://discord.gg/qUtxnK2NMf)
