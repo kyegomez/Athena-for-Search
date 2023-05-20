@@ -1,0 +1,71 @@
+const { PineconeClient } = require("pinecone-client");
+const { MongoClient } = require("mongodb");
+//
+
+
+///
+// export default async function handler(req, res) {
+//     try {
+//         const client = await MongoClient.connect(process.env.MONGODB_URL, {
+//             useNewUrlParser: true,
+//             useUnifiedTopology: true,
+//         });
+
+//         const db = client.db(process.env.MONGODB_DB);
+
+          
+//       if (req.method !== "POST") {
+//         return res.status(405).json({ error: "Method Not Allowed" });
+//       }
+  
+//       let bodyObject = JSON.parse(req.body);
+//       let myPost = await db.collection("athena-for-searches").insertOne(bodyObject);
+//       res.json(myPost.ops[0]);  
+
+
+//         //   if (!query || !athenaResponse || !sources) {
+//         //     return res.status(400).json({ error: "Bad Request" });
+//         //   }
+    
+//         // Connect to MongoDB
+    
+    
+//         // Insert variables into collection
+//         //   const result = await db.collection("athena-for-searches").insertOne({
+//         //     query,
+//         //     athenaResponse,
+//         //     sources
+//         //   });
+//       if (!myPost) {
+//         return res.status(500).json({ error: "Failed to insert variables" });
+//       }
+
+//       //teststst
+//       // Close MongoDB connection
+//       await client.close();
+  
+//       return res.status(200).json({ message: "Variables inserted successfully" });
+//     } catch (error) {
+//       console.warn(error);
+//       return res.status(500).json({ error: "Internal Server Error" });
+//     }
+//   }
+
+
+import clientPromise from '../../components/mongodb';
+
+export default async function handler(req, res) {
+  const client = await clientPromise;
+  const db = client.db("athena-for-search");
+  switch (req.method) {
+    case "POST":
+      let bodyObject = JSON.parse(req.body);
+      let myPost = await db.collection("sessions").insertOne(bodyObject);
+      res.json(myPost);
+      break;
+    case "GET":
+      const allPosts = await db.collection("sessions").find({}).toArray();
+      res.json({ status: 200, data: allPosts });
+      break;
+  }
+}
