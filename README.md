@@ -27,7 +27,7 @@ To call forth Athena for Search into your local sphere, follow these steps:
 
 1. Clone the repository
     ```
-    git clone https://github.com/kyegomez/Ask-Athena.git
+    git clone https://github.com/kyegomez/Athena-for-Search.git
     ```
 2. Install the dependencies, the tools of Athena's craft.
     ```
