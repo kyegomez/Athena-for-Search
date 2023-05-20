@@ -50,7 +50,7 @@ Athena is a living entity, always in a state of growth, evolving and adapting to
 
 2. **Follow-Up Searches**: In order to provide more detailed, nuanced, and layered information, Athena will gain the ability to conduct "follow-up" searches based on the initial search results. This will enable users to delve deeper into subjects, allowing for more informed and comprehensive exploration.
 
-3. **Prompt Enhancement**: We will work to improve the prompts used to call the OpenAI API. By crafting more precise and context-aware prompts, we will enable Athena to generate more accurate and relevant answers.
+3. **Prompt Enhancement**: We will work to improve the prompts used to call the OpenAI API. By crafting more precise and context-aware prompts, we will enable Athena to generate more accurate and relevant answers. Return graphs, data visualizations, and multi-modality queries
 
 4. **Expanding Data Sources**: We aim to enable sourcing from non-text-davinci-003 models, increasing the diversity of information Athena can leverage. This will broaden the scope of possible answers, providing a more well-rounded response to user queries.
 
