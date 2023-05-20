@@ -103,3 +103,13 @@ Together, let us bring about a revolution in human-computer interaction, empower
 Join us at Agora, where we are devoted to advancing humanity through creation. Let's shape a world that cherishes the spirit of innovation and values the joy of helping others.
 
 [Agora link](https://discord.gg/qUtxnK2NMf)
+
+# License 
+
+## Creative Commons Disclaimer
+
+This project is licensed under the Creative Commons Attribution-NonCommercial (CC BY-NC) license. By contributing to this project or using the provided code, you agree to the following terms:
+
+- You are free to distribute, modify, and build upon this work for non-commercial purposes, as long as you give appropriate credit to the original creator(s).
+- Any modifications or derivative works based on this project must also be shared under the same CC BY-NC license.
+- Commercial use, sale, or incorporation of this project or its components into commercial products is strictly prohibited without obtaining explicit permission from the copyright holder(s).
