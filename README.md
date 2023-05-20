@@ -1,7 +1,7 @@
 # Athena for Search
 ![Athena For Search](public/athena-search-web.png)
 
-![Athena for Search with Citations](public/athena-search-web.png)
+![Athena for Search with Citations](public/athena-search-citations.png)
 
 
 Athena for Search is a dynamic search application, inspired by the purpose of APAC AI to redefine Human-Computer Interaction. Our mission is to automate repetitive tasks, enabling humans to channel their creativity and innovative spirit into more meaningful activities.
@@ -44,6 +44,9 @@ To run Athena for Search locally, follow these steps:
 ## Short-Term Advancements
 
 1. **Embedded Internet Queries:** Implement the initial phase of embedding internet data into multi-modality SOTA (State of the Art) vectors to enable advanced data querying capabilities.
+
+This will be done through Agora's Ocean Multi-Modal Native Database
+[Ocean's Repository](https://github.com/kyegomez/Ocean)
 
 2. **Intelligent Follow-Up Queries:** Build a system that intelligently constructs follow-up queries based on initial search results to provide more detailed, context-rich information to the user.
 
