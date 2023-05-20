@@ -41,21 +41,23 @@ To call forth Athena for Search into your local sphere, follow these steps:
 # Our Journey to the Future
 Athena is not stagnant; she is an ever-evolving entity. We chart our course forward, guided by the stars of innovation and utility.
 
-Roadmap
-Athena is a living entity, always in a state of growth, evolving and adapting to better serve humanity's pursuit of knowledge. We constantly strive to improve, innovate, and enhance the capabilities of Athena, all the while pushing the boundaries of what's possible. Our roadmap charts our journey towards an ambitious vision of the future.
+# Roadmap
+Athena is a living entity, always in a state of growth, evolving and adapting to better serve humanity's pursuit of knowledge. We constantly strive to improve, innovate, and enhance the capabilities of Athena, all the while pushing the boundaries of what's possible. Our roadmap charts our journey towards an ambitious vision of the future. 
 
-Immediate Actionables
-Increased Speed of Answers: We will begin working on replacing webpage scraping with the Google Search API, Bing, or both. By leveraging search APIs, we can speed up Athena's answer generation significantly. This marks a move away from the earlier scraping method, which was used to sidestep cost and rate limitations.
+## Immediate Actionables
 
-Follow-Up Searches: In order to provide more detailed, nuanced, and layered information, Athena will gain the ability to conduct "follow-up" searches based on the initial search results. This will enable users to delve deeper into subjects, allowing for more informed and comprehensive exploration.
+1. **Increased Speed of Answers**: We will begin working on replacing webpage scraping with the Google Search API, Bing, or both. By leveraging search APIs, we can speed up Athena's answer generation significantly. This marks a move away from the earlier scraping method, which was used to sidestep cost and rate limitations.  
 
-Prompt Enhancement: We will work to improve the prompts used to call the OpenAI API. By crafting more precise and context-aware prompts, we will enable Athena to generate more accurate and relevant answers.
+2. **Follow-Up Searches**: In order to provide more detailed, nuanced, and layered information, Athena will gain the ability to conduct "follow-up" searches based on the initial search results. This will enable users to delve deeper into subjects, allowing for more informed and comprehensive exploration.
 
-Expanding Data Sources: We aim to enable sourcing from non-text-davinci-003 models, increasing the diversity of information Athena can leverage. This will broaden the scope of possible answers, providing a more well-rounded response to user queries.
+3. **Prompt Enhancement**: We will work to improve the prompts used to call the OpenAI API. By crafting more precise and context-aware prompts, we will enable Athena to generate more accurate and relevant answers.
 
-Personalized Models: We plan to develop a system that allows users to train their personalized models for answer synthesis. This personalization will enable Athena to understand each user's unique needs and preferences, further enhancing the accuracy and relevance of the answers generated.
+4. **Expanding Data Sources**: We aim to enable sourcing from non-text-davinci-003 models, increasing the diversity of information Athena can leverage. This will broaden the scope of possible answers, providing a more well-rounded response to user queries.
+
+5. **Personalized Models**: We plan to develop a system that allows users to train their personalized models for answer synthesis. This personalization will enable Athena to understand each user's unique needs and preferences, further enhancing the accuracy and relevance of the answers generated.
 
 These immediate enhancements will provide significant improvements to Athena's performance and capabilities, making it an even more powerful tool for discovery and learning. As we press forward with these advancements, we eagerly anticipate the new horizons of possibility that they will open up.
+
 
 ## Short-Term Advancements
 
