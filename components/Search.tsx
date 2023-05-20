@@ -59,8 +59,6 @@ export const Search: FC<SearchProps> = ({ onSearch, onAnswerUpdate, onDone }) =>
       alert("Please enter a query");
       return;
     }
-
-    // const posthogInit: any = posthog.init(posthogKey, {api_host: apiHost});
   
     posthog.capture('search_performed', { query });
   
@@ -85,17 +83,6 @@ export const Search: FC<SearchProps> = ({ onSearch, onAnswerUpdate, onDone }) =>
     }
 
     const { sources }: { sources: Source[] } = await response.json();
-    // ////////////////---------------------> mongoose
-
-    // const doc = {
-    //   query: query,
-    //   athenaResponse: response,
-    //   sources: sources
-    // }
-    // const docInserted = new eventData(doc);
-    // docInserted.save();
-    ////////////////---------------------> mongoose
-
 
     return sources;
   };
@@ -153,11 +140,7 @@ export const Search: FC<SearchProps> = ({ onSearch, onAnswerUpdate, onDone }) =>
     }
   };
 
-  // const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-  //   if (e.key === "Enter") {
-  //     handleSearch();
-  //   }
-  // };
+
 
 
   return (
