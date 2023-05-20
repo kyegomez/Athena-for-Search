@@ -54,7 +54,7 @@ Athena is a living entity, always in a state of growth, evolving and adapting to
 
 4. **Expanding Data Sources**: We aim to enable sourcing from non-text-davinci-003 models, increasing the diversity of information Athena can leverage. This will broaden the scope of possible answers, providing a more well-rounded response to user queries.
 
-5. **Personalized Models**: We plan to develop a system that allows users to train their personalized models for answer synthesis. This personalization will enable Athena to understand each user's unique needs and preferences, further enhancing the accuracy and relevance of the answers generated.
+5. **Personalized Models**: A feature to help you choose your own models like CHATGPT or Clauda or Athena Native through an model searching marketplace. We plan to develop a system that allows users to train their personalized models for answer synthesis. This personalization will enable Athena to understand each user's unique needs and preferences, further enhancing the accuracy and relevance of the answers generated.
 
 These immediate enhancements will provide significant improvements to Athena's performance and capabilities, making it an even more powerful tool for discovery and learning. As we press forward with these advancements, we eagerly anticipate the new horizons of possibility that they will open up.
 
