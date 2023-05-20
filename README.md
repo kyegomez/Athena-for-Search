@@ -1,7 +1,9 @@
 # Athena for Search
-![Athena For Search](athena-search-web.png)
+![Athena For Search](public/athena-search-web.png)
 
-![Athena for Search with Citations](athena-search-web.png)
+![Athena for Search with Citations](public/athena-search-web.png)
+
+
 Athena for Search is a dynamic search application, inspired by the purpose of APAC AI to redefine Human-Computer Interaction. Our mission is to automate repetitive tasks, enabling humans to channel their creativity and innovative spirit into more meaningful activities.
 
 If you have any inquiries, do not hesitate to connect with us on Twitter.
