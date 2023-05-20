@@ -39,7 +39,18 @@ To run Athena for Search locally, follow these steps:
     npm run dev
     ```
 
-# Extensive Roadmap
+# Roadmap
+Improve response speed by replacing webpage scraping with the Google Search API or bing or both?
+
+Web scraping was used to avoid cost and rate limitations.
+
+Implement "follow-up" searches.
+
+Enhance the prompt.
+
+Enable sourcing from non-text-davinci-003 models.
+
+Train your personalized model for answer synthesis.
 
 ## Short-Term Advancements
 
