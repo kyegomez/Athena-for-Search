@@ -11,12 +11,6 @@ interface PostHogConfig {
   apiHost: string;
 }
 
-// const posthogConfig: PostHogConfig = {
-//   apiKey: process.env.POSTHOG_API_KEY || "",
-//   apiHost: process.env.POSTHOG_INSTANCE_URL || "",
-// };
-
-// Check that PostHog is client-side (used to handle Next.js SSR)
 if (typeof window !== "undefined") {
   posthog.init('phc_hslKdorllPf5Ts4iRyJHKKtxKnVCtMs5NI3E7eVAaU3', {
     api_host: 'https://app.posthog.com' || "https://app.posthog.com",
@@ -29,11 +23,6 @@ if (typeof window !== "undefined") {
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
-
-  // const posthogConfig: PostHogConfig = {
-  //   apiKey: process.env.POSTHOG_API_KEY || "",
-  //   apiHost: process.env.POSTHOG_INSTANCE_URL || "",
-  // };
 
 
   useEffect(() => {

@@ -1,6 +1,8 @@
 # Athena for Search: The Dawning of a New Era in Search
 
-![Athena Demo] (public/athena-for-search.gif)
+
+![Athena For Search](public/athena-for-search.gif) 
+
 
 
 ![Athena For Search](public/athena-search-web.png)
