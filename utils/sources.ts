@@ -1,4 +1,4 @@
-export function cleanSourceText(text: string, maxLength: number): string {
+export function cleanSourceText(text: string): string {
   return text
     .trim()
     .replace(/(\n){4,}/g, "\n\n\n")
