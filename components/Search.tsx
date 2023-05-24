@@ -5,6 +5,11 @@ import { SearchQuery, Source } from "@/types";
 // import { initializePostHog } from "@/utils/posthog_init";
 import endent from "endent";
 import posthog  from "posthog-js";
+// import searchService from "@/utils/searchService";
+// import { SearchService } from "@/utils/searchService";
+
+
+
 interface SearchProps {
   onSearch: (searchResult: SearchQuery) => void;
   onAnswerUpdate: (answer: string) => void;
@@ -20,6 +25,8 @@ export const Search: FC<SearchProps> = ({ onSearch, onAnswerUpdate, onDone }) =>
   const [apiKey, setApiKey] = useState<string>("");
   const [showSettings, setShowSettings] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
+
+  // const searchService = new SearchService();
 
 
   const handleSave = async (query: string, answer: string, sources: any) => {
@@ -49,44 +56,80 @@ export const Search: FC<SearchProps> = ({ onSearch, onAnswerUpdate, onDone }) =>
     }
   };
 
-  const posthogKey: any = process.env.POSTHOG_API_KEY;
-  const apiHost: any = process.env.POSTHOG_INSTANCE_URL;
-  
-
 
   const handleSearch = async () => {
-    if (!query) {
+    if (!query || query.trim() === '') {
       alert("Please enter a query");
       return;
     }
   
-    posthog.capture('search_performed', { query });
-  
     setLoading(true);
-    const sources = await fetchSources();
-    await handleStream(sources);
-  };
+    try {
+      // Calling the new API endpoint
+      const response = await fetch("/api/sources", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ query })
+      });
   
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status} ${response.statusText}`);
+      }
+  
+      const { sources }: { sources: Source[] } = await response.json();
+      console.log("Received sources:", sources); // Log the received sources
+      await handleStream(sources);
+    } catch (error) {
+      console.error("Error while searching:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // const handleSearch = async () => {
+  //   if (!query || query.trim() === '') {
+  //     alert("Please enter a query");
+  //     return;
+  //   }
+
+  //   setLoading(true);
+  //   const sources = await fetchSources();
+  //   await handleStream(sources);
+  // };
+    
 
   const fetchSources = async () => {
-    const response = await fetch("/api/sources", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ query })
-    });
-
-    if (!response.ok) {
-      setLoading(false);
-      throw new Error(response.statusText);
+    try {
+      const cleanedResponse = JSON.stringify({query});
+  
+      const response: any = await fetch('/api/sources', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: cleanedResponse,
+      });
+  
+      console.log(`response ${response}`);
+  
+      if (!response.ok) {
+        const errorResponse = response;
+        console.error("Error Response:", errorResponse);
+        setLoading(false);
+        throw new Error(response.statusText);
+      }
+  
+      const { sources }: { sources: Source[] } = await response.json();
+  
+      return sources;
+    } catch (error) {
+      console.error("Error while fetching sources:", error);
+      throw error;
     }
-
-    const { sources }: { sources: Source[] } = await response.json();
-
-    return sources;
   };
-
+  
   const handleStream = async (sources: Source[]) => {
     try {
       const prompt = endent`Provide a 2-3 sentence answer to the query based on the followin sources. Be original, concise, accurate, and helpful. Cite sources as [1] or [2] or [3] after each sentence (not just the very end) to back up your answer (Ex: Correct: [1], Correct: [2][3], Incorrect: [1, 2]).
@@ -142,13 +185,10 @@ export const Search: FC<SearchProps> = ({ onSearch, onAnswerUpdate, onDone }) =>
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
+      console.log("Search query entered:", query); // Log the search query
       handleSearch();
     }
   };
-
-
-
-
 
   return (
     <>
@@ -174,6 +214,7 @@ export const Search: FC<SearchProps> = ({ onSearch, onAnswerUpdate, onDone }) =>
                 placeholder="Ask Anything..."
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
+                onKeyDown={handleKeyDown}
               />
 
               <button>
