@@ -991,28 +991,36 @@ const searchHandler = async (
       (item: { title: string; htmlSnippet: string; link: string }) => {
         return async () => {
           const link = item.link;
-          const response = await fetch(link);
-          const html = await response.text();
-          const $ = cheerio.load(html);
-    
+          
           // Clean the HTML snippet from the item
           let snippetText = item.htmlSnippet.replace(/<\/?[^>]+(>|$)/g, "");
-          
-          // Extract the text content and header using cheerio
-          const bodyText = $("body").text();
-          const header = $("h1").text();
     
-          // Clean the text content and header
-          const cleanedBodyText = cleanSourceText(bodyText);
-          const cleanedHeader = cleanSourceText(header);
+          try {
+            const response = await fetch(link);
+            const html = await response.text();
+            const $ = cheerio.load(html);
     
-          // Concatenate the snippet, header and the body text
-          const combinedText = snippetText + " " + cleanedHeader + " " + cleanedBodyText;
+            // Extract the text content and header using cheerio
+            const bodyText = $("body").text();
+            const header = $("h1").text();
     
-          return { url: link, text: combinedText };
+            // Clean the text content and header
+            const cleanedBodyText = cleanSourceText(bodyText);
+            const cleanedHeader = cleanSourceText(header);
+    
+            // Concatenate the snippet, header and the body text
+            const combinedText = snippetText + " " + cleanedHeader + " " + cleanedBodyText;
+    
+            return { url: link, text: combinedText };
+          } catch (err) {
+            console.log(`Error fetching URL: ${link}`);
+            // Return snippetText in case of a fetch error
+            return { url: link, text: snippetText };
+          }
         };
       }
     );
+    
     
 
     // Use the worker pool to execute the tasks.
