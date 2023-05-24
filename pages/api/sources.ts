@@ -68,7 +68,7 @@ const searchHandler = async (
             const controller = new AbortController();
             const timeout = setTimeout(() => {
               controller.abort();
-            }, 5000); // Set a 5-second timeout for fetch requests
+            }, 1000); // Set a 5-second timeout for fetch requests
 
             const response = await fetch(link, { signal: controller.signal });
             clearTimeout(timeout);
