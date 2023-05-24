@@ -928,12 +928,13 @@ import { google } from "googleapis";
 import cheerio from "cheerio";
 import { OpenAIModel } from "@/types";
 const customsearch = google.customsearch("v1");
-import { Readability } from "@mozilla/readability";
-import { JSDOM } from "jsdom";
+// import { Readability } from "@mozilla/readability";
+// import { JSDOM } from "jsdom";
 import { WorkerPool } from "@/utils/workerpool";
+import fetch from "node-fetch"
 
 //create an all-new workerpool
-const workerPool = new WorkerPool(6);
+const workerPool = new WorkerPool(5);
 
 type Data = {
   sources: Source[];
@@ -950,18 +951,20 @@ const searchHandler = async (
 
   const api_key: any = process.env.GOOGLE_API_KEY ;
   const cx: any= process.env.GOOGLE_SEARCH_ENGINE_ID;
-  const sourceCount = 6;
+  const sourceCount = 5;
 
   try {
     let links: string[] = [];
 
     const result = await customsearch.cse.list({
-      auth: encodeURIComponent(api_key),
-      cx: encodeURIComponent(cx),
-      q: encodeURIComponent(query),
+      auth: api_key,
+      cx: cx,
+      q: query,
       num: sourceCount,
       fields: "items(title,htmlSnippet,link)",
       safe: "active", //filters bad stuff,
+      // hq: "tutorial", // Add an additional query term to improve the quality of the results
+      // sort: "rating:a", // Sort results by date
       // exactTerms: encodeURIComponent(query)
       // fileType: "html",
       // fileType: "pdf|docx|txt", // Filter search results by file type
@@ -982,24 +985,6 @@ const searchHandler = async (
       throw new Error("No results found");
     }
 
-    // const sources = items.map((item: { title: string; htmlSnippet: string; link: string; }) => {
-    //   return item.link;
-    // }) as Source[];
-    // const sources = await Promise.all(
-    //   items.map(async (item: { title: string; htmlSnippet: string; link: string }) => {
-    //     const link = item.link;
-    //     const response = await fetch(link);
-    //     const html = await response.text();
-    //     const dom = new JSDOM(html);
-    //     const doc = dom.window.document;
-    //     const parsed = new Readability(doc).parse();
-
-    //     if (parsed) {
-    //       let sourceText = cleanSourceText(parsed.textContent);
-    //       return { url: link, text: sourceText };
-    //     }
-    //   })
-    // );
 
     // Create tasks for fetching and parsing the data from the URLs.
     const tasks = items.map(
@@ -1008,17 +993,27 @@ const searchHandler = async (
           const link = item.link;
           const response = await fetch(link);
           const html = await response.text();
-          const dom = new JSDOM(html);
-          const doc = dom.window.document;
-          const parsed = new Readability(doc).parse();
-
-          if (parsed) {
-            let sourceText = cleanSourceText(parsed.textContent);
-            return { url: link, text: sourceText };
-          }
+          const $ = cheerio.load(html);
+    
+          // Clean the HTML snippet from the item
+          let snippetText = item.htmlSnippet.replace(/<\/?[^>]+(>|$)/g, "");
+          
+          // Extract the text content and header using cheerio
+          const bodyText = $("body").text();
+          const header = $("h1").text();
+    
+          // Clean the text content and header
+          const cleanedBodyText = cleanSourceText(bodyText);
+          const cleanedHeader = cleanSourceText(header);
+    
+          // Concatenate the snippet, header and the body text
+          const combinedText = snippetText + " " + cleanedHeader + " " + cleanedBodyText;
+    
+          return { url: link, text: combinedText };
         };
       }
     );
+    
 
     // Use the worker pool to execute the tasks.
     const sources = await workerPool.execute(tasks);
@@ -1028,7 +1023,7 @@ const searchHandler = async (
     const filteredSources = sources.filter((source) => source !== undefined);
 
     for (const source of filteredSources) {
-      source.text = source.text.slice(0, 1500);
+      source.text = source.text.slice(0, 300);
     }
 
     console.log(`Sources: ${JSON.stringify(filteredSources)}`);
@@ -1045,25 +1040,3 @@ const searchHandler = async (
 
 export default searchHandler;
 
-// // ...
-// export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
-//   if (req.method === 'POST') {
-//     const { query } = req.body;
-
-//     if (!query || query.trim() === '') {
-//       res.status(400).json({ error: 'Empty query is not allowed' });
-//       return;
-//     }
-
-//     try {
-//       const sources = await search(query);
-//       res.status(200).json(sources);
-//     } catch (error: any) {
-//       console.error('Error in /api/sources:', error);
-//       res.status(500).json({ error: error.message });
-//     }
-//   } else {
-//     res.setHeader('Allow', ['POST']);
-//     res.status(405).end(`Method ${req.method} Not Allowed`);
-//   }
-// }
