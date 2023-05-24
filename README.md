@@ -36,10 +36,61 @@ To call forth Athena for Search into your local sphere, follow these steps:
     ```
     npm i
     ```
-3. Invoke Athena.
+
+3. **Set Up Environment Variables**
+
+   Athena uses environment variables to handle sensitive information such as API keys. You'll need to create a `.env` file in the root directory of the project:
+
+   ```bash
+   touch .env
+   ```
+
+   Next, open the `.env` file in your text editor and add the following lines:
+
+   ```
+   ATHENA_API_KEY=<Your OpenAI Key>
+   GOOGLE_SEARCH_ENGINE_ID=<Your Google Custom Search Engine ID>
+   GOOGLE_API_KEY=<Your Google Custom Search API Key>
+   ```
+
+   Fill in the placeholder fields with your actual keys. For instance, if your OpenAI Key is "1234abcd", your `.env` file will look like this:
+
+   ```
+   ATHENA_API_KEY=1234abcd
+   GOOGLE_SEARCH_ENGINE_ID=<Your Google Custom Search Engine ID>
+   GOOGLE_API_KEY=<Your Google Custom Search API Key>
+   ```
+
+   Save the file and exit the text editor.
+
+4. **Run Athena**
+
+   Now you're ready to run Athena:
+
+   ```bash
+   npm start
+   ```
+
+   Athena should now be running on your localhost!
+
+
+4. Invoke Athena.
     ```
     npm run dev
     ```
+
+
+## 🛠️ Environment Variables
+
+Environment variables are a fundamental part of developing with Athena, as they allow you to switch behaviors and modes (such as switching between development and production) and keep your secret keys safe. Below are the environment variables used in Athena:
+
+- `ATHENA_API_KEY`: Your OpenAI API Key. This is used to make requests to the OpenAI API. You can get this key from the OpenAI Dashboard.
+
+- `GOOGLE_SEARCH_ENGINE_ID`: Your Google Custom Search Engine ID. This ID is necessary to create custom search results from Google. You can get this ID by setting up a Custom Search Engine in the Google Developers Console.
+
+- `GOOGLE_API_KEY`: Your Google Custom Search API Key. This key is used to authenticate your application and authorize API requests. You can get this key from the Google Developers Console.
+
+Remember to never commit your `.env` file or any other files containing your secret keys to version control. This is considered bad practice and may compromise the security of your application.
 
 # Our Journey to the Future
 Athena is not stagnant; she is an ever-evolving entity. We chart our course forward, guided by the stars of innovation and utility.
