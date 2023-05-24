@@ -920,6 +920,22 @@
 //   }
 // }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // /pages/api/sources.ts
 import type { NextApiRequest, NextApiResponse } from "next";
 import { Source } from "@/types";
@@ -1047,4 +1063,110 @@ const searchHandler = async (
 };
 
 export default searchHandler;
+
+
+
+
+// import type { NextApiRequest, NextApiResponse } from "next";
+// import { Source } from "@/types";
+// import { cleanSourceText } from "@/utils/sources";
+// import { google } from "googleapis";
+// import cheerio from "cheerio";
+// import { OpenAIModel } from "@/types";
+// import fetch from "node-fetch";
+// import NodeCache from "node-cache";
+// import asyncRetry from "async-retry";
+// import { WorkerPool } from "@/utils/workerpool";
+
+// const customsearch = google.customsearch("v1");
+// // Cache
+// const resultCache = new NodeCache({ stdTTL: 3600 }); // Cache for 1 hour
+
+// // Worker Pool
+// const workerPool = new WorkerPool(5); // 5 concurrent tasks
+
+// type Data = {
+//   sources: Source[];
+// };
+
+// const searchHandler = async (
+//   req: NextApiRequest,
+//   res: NextApiResponse<Data>
+// ) => {
+//   const { query, model } = req.body as {
+//     query: string;
+//     model: OpenAIModel;
+//   };
+
+//   const api_key: any = process.env.GOOGLE_API_KEY ;
+//   const cx: any= process.env.GOOGLE_SEARCH_ENGINE_ID;
+//   const sourceCount = 5;
+
+//   try {
+//     let cachedResult: any = resultCache.get(query);
+//     if (cachedResult) {
+//       return res.status(200).json(cachedResult);
+//     }
+
+//     const result: any = await asyncRetry(async () =>
+//       customsearch.cse.list({
+//         auth: api_key,
+//         cx: cx,
+//         q: query,
+//         num: sourceCount,
+//         fields: "items(title,htmlSnippet,link)",
+//         safe: "active"
+//       })
+//     );
+
+//     const items: any = result.data.items;
+
+//     if (!items || items.length === 0) {
+//       throw new Error("No results found");
+//     }
+
+//     const tasks = items.map(
+//       (item: { title: string; htmlSnippet: string; link: string }) => {
+//         return async () => {
+//           const link = item.link;
+//           let snippetText = item.htmlSnippet.replace(/<\/?[^>]+(>|$)/g, "");
+
+//           try {
+//             const response = await asyncRetry(async () => fetch(link));
+//             const html = await response.text();
+//             const $ = cheerio.load(html);
+//             const bodyText = $("body").text();
+//             const header = $("h1").text();
+
+//             const cleanedBodyText = cleanSourceText(bodyText);
+//             const cleanedHeader = cleanSourceText(header);
+//             const combinedText = snippetText + " " + cleanedHeader + " " + cleanedBodyText;
+
+//             return { url: link, text: combinedText };
+//           } catch (err) {
+//             console.log(`Error fetching URL: ${link}`);
+//             return { url: link, text: snippetText };
+//           }
+//         };
+//       }
+//     );
+
+//     const sources = await workerPool.execute(tasks);
+//     const filteredSources = sources.filter((source) => source !== undefined);
+
+//     for (const source of filteredSources) {
+//       source.text = source.text.slice(0, 300);
+//     }
+
+//     resultCache.set(query, { sources: filteredSources });
+
+//     return res.status(200).json({ sources: filteredSources });
+//   } catch (err) {
+//     console.log(err);
+//     return res.status(500).json({ sources: [] });
+//   }
+// };
+
+// export default searchHandler;
+
 
