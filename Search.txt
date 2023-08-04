@@ -48,7 +48,6 @@ export const Search: FC<SearchProps> = ({ onSearch, onAnswerUpdate, onDone }) =>
     }
   };
 
-
   const handleSearch = async () => {
     if (!query || query.trim() === '') {
       alert("Please enter a query");
@@ -57,22 +56,33 @@ export const Search: FC<SearchProps> = ({ onSearch, onAnswerUpdate, onDone }) =>
   
     setLoading(true);
     try {
-      // Calling the new API endpoint
-      const response = await fetch("/api/sources", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ query })
-      });
+      let allSources: Source[] = [];
+      const numberOfCalls = 1; // Replace with the number of times you want to call the API
   
-      if (!response.ok) {
-        throw new Error(`Error: ${response.status} ${response.statusText}`);
+      for (let i = 0; i < numberOfCalls; i++) {
+        // Calling the new API endpoint
+        const response = await fetch("/api/sources", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ query })
+        });
+  
+        if (!response.ok) {
+          throw new Error(`Error: ${response.status} ${response.statusText}`);
+        }
+  
+        const { sources }: { sources: Source[] } = await response.json();
+        console.log("Received sources:", sources); // Log the received sources
+  
+        allSources = [...allSources, ...sources]; // Concatenate the sources from each call
       }
   
-      const { sources }: { sources: Source[] } = await response.json();
-      console.log("Received sources:", sources); // Log the received sources
-      await handleStream(sources);
+      // Process each source and its summary in order
+      for (const source of allSources) {
+        await handleStream([source]);
+      }
     } catch (error) {
       console.error("Error while searching:", error);
     } finally {
@@ -110,55 +120,56 @@ export const Search: FC<SearchProps> = ({ onSearch, onAnswerUpdate, onDone }) =>
       throw error;
     }
   };
-  
+
   const handleStream = async (sources: Source[]) => {
     try {
-      const prompt = endent`Provide a 2-3 sentence answer to the query based on the followin sources. Be original, concise, accurate, and helpful. Cite sources as [1] or [2] or [3] after each sentence (not just the very end) to back up your answer (Ex: Correct: [1], Correct: [2][3], Incorrect: [1, 2]).
-      
-      ${sources.map((source, idx) => `Source [${idx + 1}]:\n${source.text}`).join("\n\n")}
-      `;
+      for (const source of sources) {
+        const prompt = endent`Provide a 2-3 sentence answer to the query based on the following source. Be original, concise, accurate, and helpful. Cite sources as [1] or [2] or [3] after each sentence (not just the very end) to back up your answer (Ex: Correct: [1], Correct: [2][3], Incorrect: [1, 2]).
+        
+        Source:\n${source.text}
+        `;
   
-      const response = await fetch("/api/answer", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ prompt, apiKey })
-      });
+        const response = await fetch("/api/answer", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ prompt, apiKey })
+        });
   
-      if (!response.ok) {
+        if (!response.ok) {
+          setLoading(false);
+          console.log(`Error: ${response.status} ${response.statusText}`);
+          throw new Error(response.statusText);
+        }
+  
         setLoading(false);
-        console.log(`Error: ${response.status} ${response.statusText}`);
-        throw new Error(response.statusText);
+        onSearch({ query, sourceLinks: [source.url] });
+  
+        if (!response.body) {
+          console.log("Error: response.body is null");
+          onAnswerUpdate("Error");
+          return;
+        }
+  
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+        let done = false;
+  
+        let answerChunks = [];
+  
+        while (!done) {
+          const { value, done: doneReading } = await reader.read();
+          done = doneReading;
+          const chunkValue = decoder.decode(value);
+          answerChunks.push(chunkValue);
+          onAnswerUpdate(chunkValue);
+        }
+  
+        const answer = answerChunks.join('');
+        onDone(true);
+        handleSave(query, answer, [source]); // Save the accumulated answer to the database
       }
-  
-      setLoading(false);
-      onSearch({ query, sourceLinks: sources.map((source) => source.url) });
-  
-      if (!response.body) {
-        console.log("Error: response.body is null");
-        onAnswerUpdate("Error");
-        return;
-      }
-  
-      const reader = response.body.getReader();
-      const decoder = new TextDecoder();
-      let done = false;
-  
-      let answerChunks = [];
-  
-      while (!done) {
-        const { value, done: doneReading } = await reader.read();
-        done = doneReading;
-        const chunkValue = decoder.decode(value);
-        answerChunks.push(chunkValue);
-        onAnswerUpdate(chunkValue);
-      }
-  
-      const answer = answerChunks.join('');
-      onDone(true);
-      handleSave(query, answer, sources); // Save the accumulated answer to the database
-  
     } catch (err) {
       onAnswerUpdate("Error");
     }
@@ -211,3 +222,4 @@ export const Search: FC<SearchProps> = ({ onSearch, onAnswerUpdate, onDone }) =>
     </>
   );
 };
+

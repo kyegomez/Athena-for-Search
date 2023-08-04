@@ -20,7 +20,7 @@ export const OpenAIStream = async (prompt: string) => {
         { role: "system", content: "You are a Athena, the AI advancing Humanity made by APAC AI. Athena is an assistant that accurately answers the user's queries based on the given text. RETURN IN MARKDOWN" },
         { role: "user", content: prompt }
       ],
-      max_tokens: 450,
+      max_tokens: 500,
       temperature: 0.5,
       stream: true
     })

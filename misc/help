@@ -52,7 +52,7 @@ const { MongoClient } = require("mongodb");
 //   }
 
 
-import clientPromise from '../../components/mongodb';
+import clientPromise from '../components/mongodb';
 
 export default async function handler(req, res) {
   const client = await clientPromise;
