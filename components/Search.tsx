@@ -1,13 +1,8 @@
 import { IconArrowRight, IconBolt, IconSearch } from "@tabler/icons-react";
 import { FC, KeyboardEvent, useEffect, useRef, useState } from "react";
 import { SearchQuery, Source } from "@/types";
-// import { posthog } from "posthog-js";
-// import { initializePostHog } from "@/utils/posthog_init";
 import endent from "endent";
 import posthog  from "posthog-js";
-// import searchService from "@/utils/searchService";
-// import { SearchService } from "@/utils/searchService";
-
 
 
 interface SearchProps {
@@ -16,7 +11,6 @@ interface SearchProps {
   onDone: (done: boolean) => void;
 }
 
-//
 
 export const Search: FC<SearchProps> = ({ onSearch, onAnswerUpdate, onDone }) => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -25,8 +19,6 @@ export const Search: FC<SearchProps> = ({ onSearch, onAnswerUpdate, onDone }) =>
   const [apiKey, setApiKey] = useState<string>("");
   const [showSettings, setShowSettings] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
-
-  // const searchService = new SearchService();
 
 
   const handleSave = async (query: string, answer: string, sources: any) => {
@@ -87,17 +79,6 @@ export const Search: FC<SearchProps> = ({ onSearch, onAnswerUpdate, onDone }) =>
       setLoading(false);
     }
   };
-
-  // const handleSearch = async () => {
-  //   if (!query || query.trim() === '') {
-  //     alert("Please enter a query");
-  //     return;
-  //   }
-
-  //   setLoading(true);
-  //   const sources = await fetchSources();
-  //   await handleStream(sources);
-  // };
     
 
   const fetchSources = async () => {
@@ -200,15 +181,15 @@ export const Search: FC<SearchProps> = ({ onSearch, onAnswerUpdate, onDone }) =>
       ) : (
         <div className="mx-auto flex h-full w-full max-w-[750px] flex-col items-center space-y-6 px-3 pt-32 sm:pt-64">
           <div className="flex items-center">
-            <div className="ml-1 text-center font-sans text-5xl	">Athena</div>
+            <div className="ml-1 text-center font-sans text-5xl text-black	">Athena</div>
           </div>
 
             <div className="relative w-full">
-              <IconSearch className="text=[#D4D4D8] absolute top-3 w-10 left-1 h-6 rounded-full opacity-50 sm:left-3 sm:top-4 sm:h-8" />
+              <IconSearch className="text=[#78716c] absolute top-3 w-10 left-1 h-6 rounded-full opacity-50 sm:left-3 sm:top-4 sm:h-8" />
 
               <input
                 ref={inputRef}
-                className="h-12 w-full rounded-md border border-cyan-400 bg-[#4f46e5] pr-12 pl-11 focus:border-cyan-800 focus:bg-[#4338ca] focus:outline-none focus:ring-2 focus:ring-cyan-800 sm:h-16 sm:py-2 sm:pr-16 sm:pl-16 sm:text-lg font-sans"
+                className="h-12 w-full rounded-md border border-amber-800 text-gray-100 bg-[#CD9900] pr-12 pl-11 focus:border-yellow-800 focus:bg-[#A57D02] focus:outline-none focus:ring-2 focus:ring-amber-800 sm:h-16 sm:py-2 sm:pr-16 sm:pl-16 sm:text-lg font-sans"
                 type="text"
                 // onSubmit={handleSubmit}
                 placeholder="Ask Anything..."
@@ -221,7 +202,7 @@ export const Search: FC<SearchProps> = ({ onSearch, onAnswerUpdate, onDone }) =>
                 <IconArrowRight
                   onClick={handleSearch}
                   // onSubmit={handleSubmit}
-                  className="absolute right-2 top-2.5 h-7 w-7 rounded-full bg-blue-500 p-1 hover:cursor-pointer hover:bg-blue-600 sm:right-3 sm:top-3 sm:h-10 sm:w-10"
+                  className="absolute right-2 top-2.5 h-7 w-7 rounded-full bg-violet-500 p-1 hover:cursor-pointer hover:bg-purple-600 sm:right-3 sm:top-3 sm:h-10 sm:w-10"
                 />
               </button>
             </div>
