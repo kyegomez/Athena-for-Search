@@ -29,7 +29,7 @@ const searchHandler = async (
 
   const api_key: any = process.env.GOOGLE_API_KEY;
   const cx: any = process.env.GOOGLE_SEARCH_ENGINE_ID;
-  const sourceCount = 3;
+  const sourceCount = 5;
 
   try {
     let links: string[] = [];

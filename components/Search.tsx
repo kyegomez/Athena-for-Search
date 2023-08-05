@@ -181,7 +181,7 @@ export const Search: FC<SearchProps> = ({ onSearch, onAnswerUpdate, onDone }) =>
       ) : (
         <div className="mx-auto flex h-full w-full max-w-[750px] flex-col items-center space-y-6 px-3 pt-32 sm:pt-64">
           <div className="flex items-center">
-            <div className="ml-1 text-center font-sans text-5xl text-black	">Athena</div>
+            <div className="ml-1 text-center font-sans font-bold text-5xl text-black	">Athena</div>
           </div>
 
             <div className="relative w-full">
