@@ -6,11 +6,10 @@ import { cleanSourceText } from "@/utils/sources";
 import { google } from "googleapis";
 import cheerio from "cheerio";
 import { OpenAIModel } from "@/types";
+const customsearch = google.customsearch("v1");
 import { WorkerPool } from "@/utils/workerpool";
 import fetch from "node-fetch"
 import pLimit from "p-limit";
-
-const customsearch = google.customsearch("v1");
 
 const workerPool = new WorkerPool(5);
 const concurrencyLimit = pLimit(5);
@@ -29,7 +28,7 @@ const searchHandler = async (
 
   const api_key: any = process.env.GOOGLE_API_KEY;
   const cx: any = process.env.GOOGLE_SEARCH_ENGINE_ID;
-  const sourceCount = 5;
+  const sourceCount = 4;
 
   try {
     let links: string[] = [];

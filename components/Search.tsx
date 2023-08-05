@@ -2,8 +2,6 @@ import { IconArrowRight, IconBolt, IconSearch } from "@tabler/icons-react";
 import { FC, KeyboardEvent, useEffect, useRef, useState } from "react";
 import { SearchQuery, Source } from "@/types";
 import endent from "endent";
-import posthog  from "posthog-js";
-
 
 interface SearchProps {
   onSearch: (searchResult: SearchQuery) => void;
@@ -113,7 +111,7 @@ export const Search: FC<SearchProps> = ({ onSearch, onAnswerUpdate, onDone }) =>
   
   const handleStream = async (sources: Source[]) => {
     try {
-      const prompt = endent`Provide a 2-3 sentence answer to the query based on the followin sources. Be original, concise, accurate, and helpful. Cite sources as [1] or [2] or [3] after each sentence (not just the very end) to back up your answer (Ex: Correct: [1], Correct: [2][3], Incorrect: [1, 2]).
+      const prompt = endent`Provide a 2-3 sentence answer to the query based on the followin sources. Be original, concise, accurate, and helpful. Cite sources as [1] or [2] or [3] and so on after each sentence (not just the very end) to back up your answer (Ex: Correct: [1], Correct: [2][3], Incorrect: [1, 2]).
       
       ${sources.map((source, idx) => `Source [${idx + 1}]:\n${source.text}`).join("\n\n")}
       `;
@@ -181,7 +179,7 @@ export const Search: FC<SearchProps> = ({ onSearch, onAnswerUpdate, onDone }) =>
       ) : (
         <div className="mx-auto flex h-full w-full max-w-[750px] flex-col items-center space-y-6 px-3 pt-32 sm:pt-64">
           <div className="flex items-center">
-            <div className="ml-1 text-center font-sans font-bold text-5xl text-black	">Athena</div>
+            <div className="ml-1 text-center font-sans font-bold text-5xl text-black">Athena</div>
           </div>
 
             <div className="relative w-full">
