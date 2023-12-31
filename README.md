@@ -10,22 +10,8 @@ Welcome to Athena for Search, an exceptional search application born out of APAC
 
 Should you have any inquiries, we invite you to connect with us on Twitter.
 
-## How Athena Serves You
-At the behest of your query, Athena soars across the vastness of the internet, retrieving the most relevant and recent information. This treasure trove of knowledge is then processed through the OpenAI API, crafting a response that brings clarity and insight to your curiosity. 
 
-Here's how Athena illuminates your path to knowledge:
-
-1. Athena receives your query, your beacon in the sea of information.
-2. The expanse of Google is explored, relevant web pages identified.
-3. The selected web pages are parsed, text extracted, the kernel of truth isolated.
-4. A prompt is crafted, moulded by your query and the extracted text.
-5. The OpenAI API is invoked, an answer wrought in the forge of AI.
-6. Athena sends the answer back to you, streaming wisdom into your consciousness.
-
-## Your Keys to Athena
-To unlock the wisdom of Athena for Search, you will need an OpenAI API key. Acquire your key to knowledge [here](https://beta.openai.com/signup/).
-
-## Summoning Athena to Your Realm
+## Usage
 To call forth Athena for Search into your local sphere, follow these steps:
 
 1. Clone the repository
@@ -143,18 +129,7 @@ We stand on the precipice of a new dawn in search technology. Athena for Search 
 
 We are on a quest to redefine the future of search, and we invite you to be a part of this journey. As we come together as creators, innovators, and dreamers, we believe in the power of diversity and collective intelligence. Every line of code, every algorithm, every design, contributes to the tapestry of Athena. 
 
-## The Rewards of Creation
 
-In recognition of your efforts and as a token of our appreciation, we have introduced "Creation Credits". For every meaningful contribution, you will be rewarded with these credits, a testament to your role in Athena's growth. These credits can be redeemed for premium features or even exchanged for monetary rewards.
-
-## Join Us
-
-APAC AI is also expanding its horizons and looking for like-minded individuals to join our ranks. If you share our passion for advancing humanity through next-generation Human-Computer Interfaces, we invite you to explore our open positions in development, design, product management, and AI research.
-
-Together, let us bring about a revolution in human-computer interaction, empowering individuals and organizations with unprecedented access to information. Athena beckons you. Will you answer her call?
-
-# Creators United
-Join us at Agora, where we are devoted to advancing humanity through creation. Let's shape a world that cherishes the spirit of innovation and values the joy of helping others.
 
 [Agora link](https://discord.gg/qUtxnK2NMf)
 
