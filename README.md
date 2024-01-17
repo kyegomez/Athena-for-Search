@@ -12,13 +12,11 @@ Should you have any inquiries, we invite you to connect with us on Twitter.
 
 
 ## Usage
-To call forth Athena for Search into your local sphere, follow these steps:
-
 1. Clone the repository
     ```
     git clone https://github.com/kyegomez/Athena-for-Search.git
     ```
-2. Install the dependencies, the tools of Athena's craft.
+2. Install the dependencies.
     ```
     npm i
     ```
