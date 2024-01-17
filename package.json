@@ -30,7 +30,7 @@
     "html-to-text": "^9.0.5",
     "jsdom": "^21.1.0",
     "mongodb": "^5.1.0",
-    "mongoose": "^7.1.0",
+    "mongoose": "^7.3.3",
     "next": "13.1.6",
     "node-cache": "^5.1.2",
     "node-fetch": "^3.3.1",
