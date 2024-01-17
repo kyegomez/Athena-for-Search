@@ -187,7 +187,7 @@ export const Search: FC<SearchProps> = ({ onSearch, onAnswerUpdate, onDone }) =>
 
               <input
                 ref={inputRef}
-                className="h-12 w-full rounded-md border border-amber-800 text-gray-100 bg-[#CD9900] pr-12 pl-11 focus:border-yellow-800 focus:bg-[#A57D02] focus:outline-none focus:ring-2 focus:ring-amber-800 sm:h-16 sm:py-2 sm:pr-16 sm:pl-16 sm:text-lg font-sans"
+                className="h-12 w-full rounded-md border border-cyan-800 text-gray-100 bg-[#372bc4] pr-12 pl-11 focus:border-cyan-800 focus:bg-[#0271a5] focus:outline-none focus:ring-2 focus:ring-cyan-800 sm:h-16 sm:py-2 sm:pr-16 sm:pl-16 sm:text-lg font-sans"
                 type="text"
                 // onSubmit={handleSubmit}
                 placeholder="Ask Anything..."

@@ -36,7 +36,7 @@ export const Answer: FC<AnswerProps> = ({ searchQuery, answer, done, onReset }) 
       {done && (
         <>
           <div className="border-b border-zinc-800 pb-4">
-            <div className="text-md text-amber-500">Sources</div>
+            <div className="text-md text-violet-500">Sources</div>
 
             {searchQuery.sourceLinks.map((source, index) => (
               <div
@@ -57,7 +57,7 @@ export const Answer: FC<AnswerProps> = ({ searchQuery, answer, done, onReset }) 
           </div>
 
           <button
-            className="flex h-10 w-52 items-center justify-center rounded-md bg-gradient-to-r bg-amber-500 p-2 hover:cursor-pointer hover:bg-yellow-500"
+            className="flex h-10 w-52 items-center justify-center rounded-md bg-gradient-to-r bg-violet-500 p-2 hover:cursor-pointer hover:bg-yellow-500"
             onClick={handleResetAndSave}
           >
             <IconReload size={18} />
