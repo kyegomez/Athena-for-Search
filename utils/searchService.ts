@@ -1,6 +1,9 @@
 import { OpenAIModel, Source } from "@/types";
 import { cleanSourceText } from "./sources";
 
+/**
+ * Represents a search service that interacts with the Google Custom Search API.
+ */
 class SearchService {
   public async search(query: string): Promise<Source[]> {
 

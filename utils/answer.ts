@@ -3,6 +3,12 @@
 import { OpenAIModel } from "@/types";
 import { createParser, ParsedEvent, ReconnectInterval } from "eventsource-parser";
 
+/**
+ * Sends a chat prompt to the OpenAI API and returns a ReadableStream for receiving the response.
+ * @param prompt - The user's chat prompt.
+ * @returns A ReadableStream that emits chunks of response data from the OpenAI API.
+ * @throws If there is an error during the fetch request or stream reading.
+ */
 export const OpenAIStream = async (prompt: string) => {
   const apiKey: any = process.env.ATHENA_API_KEY
   const encoder = new TextEncoder();

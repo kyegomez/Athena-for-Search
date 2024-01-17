@@ -68,7 +68,13 @@ export const Answer: FC<AnswerProps> = ({ searchQuery, answer, done, onReset }) 
     </div>
   );
 };
-
+/**
+ * Replaces the placeholders in the answer string with corresponding source links.
+ * 
+ * @param answer - The answer string with placeholders.
+ * @param sourceLinks - An array of source links.
+ * @returns An array of React elements with placeholders replaced by clickable links.
+ */
 const replaceSourcesWithLinks = (answer: string, sourceLinks: string[]) => {
   const elements = answer.split(/(\[[0-9]+\])/).map((part, index) => {
     if (/\[[0-9]+\]/.test(part)) {

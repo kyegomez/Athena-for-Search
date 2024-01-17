@@ -9,7 +9,16 @@ interface SearchProps {
   onDone: (done: boolean) => void;
 }
 
-
+/**
+ * Component for searching and handling search functionality.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {Function} props.onSearch - The callback function to handle search.
+ * @param {Function} props.onAnswerUpdate - The callback function to handle answer update.
+ * @param {Function} props.onDone - The callback function to handle search completion.
+ * @returns {JSX.Element} The search component.
+ */
 export const Search: FC<SearchProps> = ({ onSearch, onAnswerUpdate, onDone }) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
